@@ -1,0 +1,114 @@
+# SSL certificates for development
+# $ mkcert viacheslav-vahin.loc www.viacheslav-vahin.loc
+#
+# Start composition:
+# $ docker-compose up -d
+#
+# For MacOS users (development only)
+# $ docker-sync-stack start
+version: '3.7'
+services:
+  php-apache:
+    container_name: viacheslav-vahin.loc
+    # EXECUTION_ENVIRONMENT - 'development' or 'production'
+    image: defaultvalue/php:7.4-${EXECUTION_ENVIRONMENT}
+    # In case you need your own Dockerfile. Dockerfile example:
+    # ARG EXECUTION_ENVIRONMENT
+    # FROM defaultvalue/php:7.3-${EXECUTION_ENVIRONMENT}
+#    build:
+#      context: .
+#      dockerfile: docker/Dockerfile
+#      args:
+#        - EXECUTION_ENVIRONMENT=${EXECUTION_ENVIRONMENT}
+    user: docker:docker
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    restart: always
+    labels:
+      - traefik.enable=true
+      # HTTP
+      - traefik.http.routers.viacheslav-vahin-loc-http.rule=Host(`viacheslav-vahin.loc`,`www.viacheslav-vahin.loc`)
+      - traefik.http.routers.viacheslav-vahin-loc-http.entrypoints=http
+      - traefik.http.routers.viacheslav-vahin-loc-http.service=viacheslav-vahin-loc-http
+      - traefik.http.services.viacheslav-vahin-loc-http.loadbalancer.server.port=80
+      - traefik.http.services.viacheslav-vahin-loc-http.loadbalancer.server.scheme=http
+      # HTTPS
+      - traefik.http.routers.viacheslav-vahin-loc-https.rule=Host(`viacheslav-vahin.loc`,`www.viacheslav-vahin.loc`)
+      - traefik.http.routers.viacheslav-vahin-loc-https.entrypoints=https
+      - traefik.http.routers.viacheslav-vahin-loc-https.tls=true
+      - traefik.http.routers.viacheslav-vahin-loc-https.service=viacheslav-vahin-loc-https
+      - traefik.http.services.viacheslav-vahin-loc-https.loadbalancer.server.port=443
+      - traefik.http.services.viacheslav-vahin-loc-https.loadbalancer.server.scheme=https
+      # Develop with extension that allows setting livereload host and port - https://github.com/lokcito/livereload-extensions
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-https.rule=Host(`viacheslav-vahin.loc`,`www.viacheslav-vahin.loc`)
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-https.entrypoints=livereload-https
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-https.tls=true
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-https.service=viacheslav-vahin-loc-livereload-https
+      - traefik.http.services.viacheslav-vahin-loc-livereload-https.loadbalancer.server.port=35729
+      - traefik.http.services.viacheslav-vahin-loc-livereload-https.loadbalancer.server.scheme=http
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-http.rule=Host(`viacheslav-vahin.loc`,`www.viacheslav-vahin.loc`)
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-http.entrypoints=livereload-http
+      - traefik.http.routers.viacheslav-vahin-loc-livereload-http.service=viacheslav-vahin-loc-livereload-http
+      - traefik.http.services.viacheslav-vahin-loc-livereload-http.loadbalancer.server.port=35729
+      - traefik.http.services.viacheslav-vahin-loc-livereload-http.loadbalancer.server.scheme=http
+    # Must add extra_hosts to be written to /etc/hosts - otherwise containerized application can not curl itself
+    extra_hosts:
+      - "viacheslav-vahin.loc www.viacheslav-vahin.loc:127.0.0.1"
+      # Required for xDebug on Linux hosts till docker.host.internal is not available by default - https://github.com/docker/libnetwork/pull/2348/files
+      - "host.docker.internal:172.17.0.1"
+    links:
+#      - memcached
+#      - redis
+      - elasticsearch
+    external_links:
+      - mysql57:mysql
+      - mailhog
+    network_mode: bridge
+    environment:
+      # Must be set to some of the domains for xdebug to work. Should have server configured in
+      # Preferences > Language and Frameworks > PHP > Servers
+      # Or just run the project with the same domain and debug enabled in the browser
+      - PHP_IDE_CONFIG=serverName=viacheslav-vahin.loc
+      # Go is required to catch emails with Mailhog and mhsendmail (Sendmail replacement)
+      - ADDITIONAL_PATH=/usr/local/go/bin
+    volumes:
+      - .:/var/www/html
+      - ${SSL_CERTIFICATES_DIR}:/certs
+      - ./docker/virtual-host.conf:/etc/apache2/sites-enabled/virtual-host.conf
+      # IMPORTANT! The below configuration is for Mac only to enable Docker Sync Stack. Don't commit!
+      #- viacheslav-vahin-loc-sync:/var/www/html:nocopy
+
+# IMPORTANT! The below volumes configuration is for Mac only to enable Docker Sync Stack. Don't commit!
+#volumes:
+#  viacheslav-vahin-loc-sync:
+#    external: true
+
+#  redis:
+#    image: redis:latest
+#    network_mode: bridge
+#    labels:
+#      - traefik.enable=false
+#    restart: always
+
+#  memcached:
+#    image: 'memcached:1.5'
+#    network_mode: bridge
+#    labels:
+#      - traefik.enable=false
+#    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    environment:
+      - network.host=0.0.0.0
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - xpack.security.enabled=false
+      - indices.query.bool.max_clause_count=10240
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: always
+    network_mode: bridge
