@@ -119,6 +119,11 @@
 
     Options +FollowSymLinks
     RewriteEngine on
+    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_CODE=base
+    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_TYPE=website
+
+    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_CODE=additional_website
+    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_TYPE=website
 
 ############################################
 ## you can put here your magento root folder
