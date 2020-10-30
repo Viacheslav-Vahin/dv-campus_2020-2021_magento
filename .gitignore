@@ -62,6 +62,7 @@ atlassian*
 
 /var/*
 !/var/.htaccess
+!/var/db.sql.gz
 /vendor/*
 !/vendor/.htaccess
 /generated/*
