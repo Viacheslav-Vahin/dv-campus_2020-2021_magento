@@ -14,9 +14,9 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'mysql',
-                'dbname' => 'viacheslav_vahin_loc',
-                'username' => 'viacheslav_vahin_loc',
-                'password' => 'viacheslav_vahin_loc',
+                'dbname' => 'viacheslav_vahin_build_loc',
+                'username' => 'viacheslav_vahin_build_loc',
+                'password' => '^TF#FRUiKNLFOlkdas',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
@@ -72,7 +72,7 @@ return [
         'vertex' => 1
     ],
     'downloadable_domains' => [
-        'viacheslav-vahin.loc'
+        'viacheslav-vahin-develop.loc'
     ],
     'install' => [
         'date' => 'Thu, 15 Oct 2020 11:13:54 +0000'
@@ -81,16 +81,16 @@ return [
         'default' => [
             'web' => [
                 'unsecure' => [
-                    'base_url' => 'https://viacheslav-vahin.loc/',
+                    'base_url' => 'https://viacheslav-vahin-develop.loc/',
                     'base_link_url' => '{{unsecure_base_url}}',
-                    'base_static_url' => 'https://viacheslav-vahin.loc/static/',
-                    'base_media_url' => 'https://viacheslav-vahin.loc/media/'
+                    'base_static_url' => 'https://viacheslav-vahin-develop.loc/static/',
+                    'base_media_url' => 'https://viacheslav-vahin-develop.loc/media/'
                 ],
                 'secure' => [
-                    'base_url' => 'https://viacheslav-vahin.loc/',
+                    'base_url' => 'https://viacheslav-vahin-develop.loc/',
                     'base_link_url' => '{{secure_base_url}}',
-                    'base_static_url' => 'https://viacheslav-vahin.loc/static/',
-                    'base_media_url' => 'https://viacheslav-vahin.loc/media/'
+                    'base_static_url' => 'https://viacheslav-vahin-develop.loc/static/',
+                    'base_media_url' => 'https://viacheslav-vahin-develop.loc/media/'
                 ]
             ]
         ],
@@ -98,16 +98,16 @@ return [
             'additional_website' => [
                 'web' => [
                     'unsecure' => [
-                        'base_url' => 'https://viacheslav-vahin-additional.loc/',
-                        'base_link_url' => 'https://viacheslav-vahin-additional.loc/',
-                        'base_static_url' => 'https://viacheslav-vahin-additional.loc/static/',
-                        'base_media_url' => 'https://viacheslav-vahin-additional.loc/media/'
+                        'base_url' => 'https://viacheslav-vahin-additional-develop.loc/',
+                        'base_link_url' => 'https://viacheslav-vahin-additional-develop.loc/',
+                        'base_static_url' => 'https://viacheslav-vahin-additional-develop.loc/static/',
+                        'base_media_url' => 'https://viacheslav-vahin-additional-develop.loc/media/'
                     ],
                     'secure' => [
-                        'base_url' => 'https://viacheslav-vahin-additional.loc/',
-                        'base_link_url' => 'https://viacheslav-vahin-additional.loc/',
-                        'base_static_url' => 'https://viacheslav-vahin-additional.loc/static/',
-                        'base_media_url' => 'https://viacheslav-vahin-additional.loc/media/'
+                        'base_url' => 'https://viacheslav-vahin-additional-develop.loc/',
+                        'base_link_url' => 'https://viacheslav-vahin-additional-develop.loc/',
+                        'base_static_url' => 'https://viacheslav-vahin-additional-develop.loc/static/',
+                        'base_media_url' => 'https://viacheslav-vahin-additional-develop.loc/media/'
                     ]
                 ]
             ]
