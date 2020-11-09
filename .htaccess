@@ -119,11 +119,6 @@
 
     Options +FollowSymLinks
     RewriteEngine on
-    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_CODE=base
-    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_TYPE=website
-
-    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_CODE=additional_website
-    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_TYPE=website
 
 ############################################
 ## you can put here your magento root folder
@@ -243,15 +238,6 @@
             Require all denied
         </IfVersion>
     </Files>
-    <Files .travis.yml>
-        <IfVersion < 2.4>
-            order allow,deny
-            deny from all
-        </IfVersion>
-        <IfVersion >= 2.4>
-            Require all denied
-        </IfVersion>
-    </Files>
     <Files CHANGELOG.md>
         <IfVersion < 2.4>
             order allow,deny
@@ -360,42 +346,6 @@
             Require all denied
         </IfVersion>
     </Files>
-    <Files docker-compose.yml>
-            <IfVersion < 2.4>
-                order allow,deny
-                deny from all
-            </IfVersion>
-            <IfVersion >= 2.4>
-                Require all denied
-            </IfVersion>
-        </Files>
-        <Files docker-rebuild.sh>
-            <IfVersion < 2.4>
-                order allow,deny
-                deny from all
-            </IfVersion>
-            <IfVersion >= 2.4>
-                Require all denied
-            </IfVersion>
-        </Files>
-        <Files docker-sync.yml>
-            <IfVersion < 2.4>
-                order allow,deny
-                deny from all
-            </IfVersion>
-            <IfVersion >= 2.4>
-                Require all denied
-            </IfVersion>
-        </Files>
-        <Files docker-compose-develop.yml>
-            <IfVersion < 2.4>
-                order allow,deny
-                deny from all
-            </IfVersion>
-            <IfVersion >= 2.4>
-                Require all denied
-            </IfVersion>
-        </Files>
 
 # For 404s and 403s that aren't handled by the application, show plain 404 response
 ErrorDocument 404 /pub/errors/404.php

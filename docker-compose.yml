@@ -61,7 +61,7 @@ services:
 #      - redis
       - elasticsearch
     external_links:
-      - mysql57:mysql
+      - mysql80:mysql
       - mailhog
     network_mode: bridge
     environment:
