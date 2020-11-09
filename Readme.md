@@ -35,3 +35,9 @@ Deployment process flow implemented in the above files:
 6) copy generated files from the build system;
 7) switch to the production mode;
 8) turn off maintenance (only for `deploy-full.sh`).
+
+### Grunt Command for compile Viacheslav/luma theme style
+```bash 
+grunt exec:viacheslav_luma_en_us && grunt less:viacheslav_luma_en_us && grunt watch
+```
+
