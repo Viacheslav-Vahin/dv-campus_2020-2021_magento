@@ -27,11 +27,8 @@ atlassian*
 /lib/internal/flex/varien/.settings
 /node_modules
 /.grunt
-/Gruntfile.js
-/package.json
 /.php_cs
 /.php_cs.cache
-/grunt-config.json
 /pub/media/*.*
 !/pub/media/.htaccess
 /pub/media/attribute/*
@@ -47,9 +44,11 @@ atlassian*
 /pub/media/import/*
 !/pub/media/import/.htaccess
 /pub/media/logo/*
+!/pub/media/logo/websites/*
 /pub/media/custom_options/*
 !/pub/media/custom_options/.htaccess
 /pub/media/theme/*
+!/pub/media/theme/preview/*
 /pub/media/theme_customization/*
 !/pub/media/theme_customization/.htaccess
 /pub/media/wysiwyg/*
