@@ -1,5 +1,5 @@
 #!/bin/sh
-BRANCH='lesson-4magento-upgrade-and-creating-theme'
+BRANCH='lesson-5-less-and-rwd-in-magento '
 
 git checkout $BRANCH
 php bin/magento deploy:mode:set default

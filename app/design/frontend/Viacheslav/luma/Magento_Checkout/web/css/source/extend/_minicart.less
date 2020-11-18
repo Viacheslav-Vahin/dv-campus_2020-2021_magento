@@ -1,0 +1,14 @@
+//Minicart
+
+& when (@media-common = true) {
+    .minicart-items {
+        .product-item-name {
+            a {
+                .lib-css(color, @color-orange-red1);
+                &:hover {
+                    .lib-css(color, darken(@color-orange-red1, 10));
+                }
+            }
+        }
+    }
+}
