@@ -1,13 +1,27 @@
 // Header
 
 //  Desktop
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .page-header .panel.wrapper {
         background-color: @color-blue3;
+
+        .header.links {
+            > li {
+                > a {
+                    color: @color-white;
+                    font-weight: @font-weight__regular;
+                    &:hover,
+                    &:visited,
+                    &:active {
+                        color: @color-white;
+                    }
+                }
+            }
+        }
     }
 
-    .nav-sections,
-    .navigation {
+    .nav-sections {
         background-color: @color-sky-blue1;
     }
 }

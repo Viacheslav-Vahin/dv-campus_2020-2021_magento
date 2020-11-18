@@ -1,0 +1,48 @@
+//  Pagination
+
+.lib-pager() {
+    strong.page {
+        .lib-css(background, @color-orange-red1);
+        .lib-css(color, @color-white);
+    }
+    a {
+        &.page {
+            .lib-css(color, @color-orange-red1);
+
+            &:visited {
+                .lib-css(color, @color-orange-red2);
+            }
+
+            &:hover {
+                .lib-css(color, @color-orange-red2);
+            }
+        }
+
+        &.action {
+            .lib-css(background, @color-orange-red1);
+            .lib-css(color, @color-white);
+
+            &:hover {
+                .lib-css(background, @color-orange-red2);
+                .lib-css(color, @color-white);
+            }
+
+            &.next,
+            &.previous {
+                &:hover {
+                    &:before {
+                        .lib-css(color, @color-white);
+                    }
+                }
+                &:visited {
+                    &:before {
+                        .lib-css(color, @color-white);
+                    }
+                }
+                &:before {
+                    .lib-css(color, @color-white);
+                }
+            }
+        }
+    }
+}
