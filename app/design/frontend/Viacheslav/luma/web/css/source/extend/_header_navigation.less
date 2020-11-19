@@ -15,7 +15,6 @@
             > .level-top {
                 &:hover {
                     .lib-css(color, @color-white);
-                    .lib-css(box-shadow, inset 3px 0px 0px 0px @color-orange-red1);
                 }
             }
 
@@ -33,7 +32,6 @@
                 > a:not(.ui-state-active) {
                     .lib-css(background, @color-sky-blue1);
                     .lib-css(color, @color-white);
-                    .lib-css(box-shadow, none);
                 }
             }
         }
@@ -44,7 +42,6 @@
                 > a {
                     &:hover {
                         .lib-css(color, @color-white);
-                        .lib-css(box-shadow, inset 3px 0px 0px 0px @color-orange-red1);
                     }
                 }
             }
@@ -60,7 +57,6 @@
 
                             &:hover {
                                 .lib-css(color, @color-white);
-                                .lib-css(box-shadow, inset 3px 0px 0px 0px @color-orange-red1);
                             }
                         }
                     }
@@ -70,6 +66,20 @@
                     a {
                         .lib-css(color, @color-white);
                     }
+                }
+            }
+        }
+    }
+    .nav-sections {
+        .header.links {
+            .lib-css(background, @color-sky-blue1);
+
+            li {
+                &.greet.welcome {
+                    .lib-css(color, @color-white);
+                }
+                a {
+                    .lib-css(color, @color-white);
                 }
             }
         }
@@ -92,7 +102,6 @@
                 &:hover, &.ui-state-focus {
                     .lib-css(background, @color-blue3);
                     .lib-css(color, @color-white);
-                    .lib-css(border-bottom, 3px solid @color-orange-red1);
                 }
             }
 
@@ -118,7 +127,6 @@
                     &:hover,
                     &.ui-state-focus {
                         .lib-css(background, @color-blue3);
-                        .lib-css(border-left, 3px solid @color-orange-red1);
                         .lib-css(color, @color-white);
                     }
                 }
