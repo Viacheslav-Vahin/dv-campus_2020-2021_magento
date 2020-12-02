@@ -2,5 +2,19 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="product.info.social" destination="product.info.main" after="page.main.title"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.demo.message"
+                   template="Magento_Catalog::product/view/demo_product_message.phtml"
+                   after="-"
+            >
+                <arguments>
+                    <argument name="demo.message"
+                              xsi:type="string">This is a demo product. You can add them to cart and place order only to test the Magento capabilities
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
     </body>
 </page>

@@ -1,0 +1,10 @@
+<?php //
+    /** @var \Magento\Framework\Escaper $escaper */
+    /** @var \Magento\Framework\View\Element\Template $block */
+?>
+
+<div class="message error">
+    <p>
+        <?= $escaper->escapeHtml(__($block->getData('demo.message'))) ?>
+    </p>
+</div>
