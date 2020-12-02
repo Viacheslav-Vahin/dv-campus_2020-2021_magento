@@ -13,5 +13,17 @@
                 </block>
             </container>
         </referenceContainer>
+
+        <referenceContainer name="sidebar.additional">
+            <container htmlTag="div" htmlClass="image-text-block-container" after="-">
+                <block class="Magento\Cms\Block\Block"
+                       name="image.text.block"
+                >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">image_text_block</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
     </body>
 </page>
