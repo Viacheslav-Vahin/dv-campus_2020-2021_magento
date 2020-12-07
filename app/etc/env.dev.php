@@ -96,6 +96,11 @@ return [
         ],
         'websites' => [
             'base' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'uk_UA'
+                    ]
+                ],
                 'design' => [
                     'theme' => [
                         'theme_id' => 4
