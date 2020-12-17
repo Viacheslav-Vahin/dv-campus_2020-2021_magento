@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Viacheslav\ControllerDemo\Block\Bio"
+                   name="viacheslav_bio"
+                   template="Viacheslav_ControllerDemo::bio_block.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

@@ -39,5 +39,5 @@ Deployment process flow implemented in the above files:
 ### Grunt Command for compile Viacheslav/luma theme style
 ```bash 
 grunt exec:viacheslav_luma_en_us && grunt less:viacheslav_luma_en_us && grunt watch
-```
+grunt exec:viacheslav_luma_uk_ua && grunt less:viacheslav_luma_uk_ua && grunt watch```
 
