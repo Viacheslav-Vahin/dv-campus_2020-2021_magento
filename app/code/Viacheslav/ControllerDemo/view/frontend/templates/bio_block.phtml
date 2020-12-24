@@ -1,6 +1,6 @@
 <?php /** @var \Viacheslav\ControllerDemo\Block\Bio $block */ ?>
-<?php /** @var \Magento\Framework\Escaper $escaper */
-?>
+<?php /** @var \Magento\Framework\Escaper $escaper */?>
+
 <p><?= $escaper->escapeHtml(__('Full name: %1 %2', $block->getName(), $block->getSurname())) ?></p>
 <p>
     <?= $escaper->escapeHtml(__('Repository URL: ')) ?>

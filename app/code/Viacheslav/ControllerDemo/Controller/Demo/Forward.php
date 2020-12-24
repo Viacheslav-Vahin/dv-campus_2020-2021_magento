@@ -40,13 +40,11 @@ class Forward implements \Magento\Framework\App\Action\HttpGetActionInterface
      */
     public function execute(): ForwardResponse
     {
-        return $this->forwardResponseFactory->create()->setParams(
-            [
+        return $this->forwardResponseFactory->create()
+            ->setParams([
                 'firstname' => 'Viacheslav',
                 'lastname' => 'Vahin',
                 'url' => 'https://github.com/Viacheslav-Vahin/dv-campus_2020-2021_magento'
-            ]
-        )
-            ->forward('Data');
+            ])->forward('Data');
     }
 }

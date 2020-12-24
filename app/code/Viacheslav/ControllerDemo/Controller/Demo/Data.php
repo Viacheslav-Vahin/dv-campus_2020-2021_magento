@@ -3,29 +3,29 @@ declare(strict_types=1);
 
 namespace Viacheslav\ControllerDemo\Controller\Demo;
 
-use Magento\Framework\View\Result\Page as DataResponse;
+use Magento\Framework\View\Result\Page as PageResponse;
 
 class Data implements \Magento\Framework\App\Action\HttpGetActionInterface
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var \Magento\Framework\View\Result\PageFactory $pageResponseFactory
      */
-    private $dataResponseFactory;
+    private $pageResponseFactory;
 
     /**
      * Data constructor.
-     * @param \Magento\Framework\View\Result\PageFactory $dataResponseFactory
+     * @param \Magento\Framework\View\Result\PageFactory $pageResponseFactory
      */
-    public function __construct(\Magento\Framework\View\Result\PageFactory $dataResponseFactory)
+    public function __construct(\Magento\Framework\View\Result\PageFactory $pageResponseFactory)
     {
-        $this->dataResponseFactory = $dataResponseFactory;
+        $this->pageResponseFactory = $pageResponseFactory;
     }
 
     /**
-     * @return DataResponse
+     * @return PageResponse
      */
-    public function execute(): DataResponse
+    public function execute(): PageResponse
     {
-        return $this->dataResponseFactory->create();
+        return $this->pageResponseFactory->create();
     }
 }

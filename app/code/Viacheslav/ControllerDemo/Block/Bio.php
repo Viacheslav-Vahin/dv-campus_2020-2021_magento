@@ -7,21 +7,29 @@ namespace Viacheslav\ControllerDemo\Block;
  * Class Bio
  * @package Viacheslav\ControllerDemo\Block
  */
-
 class Bio extends \Magento\Framework\View\Element\Template
 {
-    public function getName()
+    /**
+     * @return String
+     */
+    public function getName(): String
     {
-        return $this->getRequest()->getParam('firstname');
+        return (string) $this->getRequest()->getParam('firstname');
     }
 
-    public function getSurname()
+    /**
+     * @return String
+     */
+    public function getSurname(): String
     {
-        return $this->getRequest()->getParam('lastname');
+        return (string) $this->getRequest()->getParam('lastname');
     }
 
-    public function getRepo()
+    /**
+     * @return String
+     */
+    public function getRepo(): String
     {
-        return $this->getRequest()->getParam('url');
+        return (string) $this->getRequest()->getParam('url');
     }
 }
