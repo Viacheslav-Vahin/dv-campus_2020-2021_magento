@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="viacheslav_controller_demo" frontName="dv-campus-2020-2021">
+            <module name="Viacheslav_ControllerDemo"/>
+        </route>
+    </router>
+</config>
