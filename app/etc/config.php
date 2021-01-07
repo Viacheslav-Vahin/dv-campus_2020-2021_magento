@@ -316,6 +316,7 @@ return [
         'Vertex_AddressValidation' => 1,
         'Viacheslav_Cms' => 1,
         'Viacheslav_ControllerDemo' => 1,
+        'Viacheslav_RegularCustomer' => 1,
         'Yotpo_Yotpo' => 1
     ]
 ];
