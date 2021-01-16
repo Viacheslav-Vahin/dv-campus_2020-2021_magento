@@ -22,6 +22,11 @@
                        template="Viacheslav_RegularCustomer::catalog/product/view/button.phtml"
                        group="detailed_info"
                 />
+                <block class="Magento\Catalog\Block\Product\View"
+                       name="loyalty.program.form"
+                       template="Viacheslav_RegularCustomer::catalog/product/view/form.phtml"
+                       group="detailed_info"
+                />
             </block>
         </referenceBlock>
     </body>

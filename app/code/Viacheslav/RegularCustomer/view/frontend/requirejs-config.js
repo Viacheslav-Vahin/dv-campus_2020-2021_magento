@@ -1,7 +1,8 @@
 var config = {
     map: {
         '*': {
-            Viacheslav_RegularCustomer_button: 'Viacheslav_RegularCustomer/js/button'
+            ViacheslavRegularCustomerButton: 'Viacheslav_RegularCustomer/js/button',
+            ViacheslavRegularCustomerForm: 'Viacheslav_RegularCustomer/js/form'
         }
     }
 };
