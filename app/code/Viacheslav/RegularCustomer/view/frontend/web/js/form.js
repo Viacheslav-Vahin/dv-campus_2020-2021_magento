@@ -35,8 +35,8 @@ define([
          * Validate form and send request
          */
         sendRequest: function () {
-            if (this.validateForm()) {
-                this.ajaxSubmit();
+            if (!this.validateForm()) {
+                return;
             }
 
             this.ajaxSubmit();

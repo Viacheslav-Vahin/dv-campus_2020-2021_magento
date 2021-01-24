@@ -96,12 +96,12 @@ return [
         ],
         'websites' => [
             'base' => [
+                'general' => [
+                    'locale' => [
+                        'code' => 'uk_UA'
+                    ]
+                ],
                 'design' => [
-                    'general' => [
-                        'locale' => [
-                            'code' => 'uk_UA'
-                        ]
-                    ],
                     'theme' => [
                         'theme_id' => 4
                     ]
