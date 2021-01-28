@@ -1,0 +1,26 @@
+{
+    "viacheslav_regular_customer": {
+        "column": {
+            "request_id": true,
+            "customer_id": true,
+            "name": true,
+            "email": true,
+            "website_id": true,
+            "admin_user_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "VIACHESLAV_REGULAR_CUSTOMER_CUSTOMER_ID": true,
+            "VIACHESLAV_REGULAR_CUSTOMER_WEBSITE_ID": true,
+            "VIACHESLAV_REGULAR_CUSTOMER_ADMIN_USER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "VIACHESLAV_REGULAR_CUSTOMER_EMAIL_WEBSITE_ID": true,
+            "VIACHESLAV_REGULAR_CSTR_CSTR_ID_M2_CSTR_ENTT_ENTT_ID": true,
+            "VIACHESLAV_REGULAR_CSTR_WS_ID_M2_STORE_WS_WS_ID": true,
+            "VIACHESLAV_REGULAR_CSTR_ADM_USR_ID_M2_ADM_USR_USR_ID": true
+        }
+    }
+}
