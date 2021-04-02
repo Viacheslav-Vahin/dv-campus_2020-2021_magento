@@ -11,7 +11,7 @@ use Magento\Framework\Phrase;
 class DiscountInfo extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest\CollectionFactory $collectionFactorys
+     * @var \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest\CollectionFactory $collectionFactory
      */
     private $collectionFactory;
 
@@ -21,7 +21,7 @@ class DiscountInfo extends \Magento\Framework\View\Element\Template
     private $storeManager;
 
     /**
-     * PersonalDiscountInfo constructor.
+     * DiscountInfo constructor.
      * @param \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest\CollectionFactory $collectionFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -32,8 +32,7 @@ class DiscountInfo extends \Magento\Framework\View\Element\Template
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->collectionFactory = $collectionFactory;
         $this->storeManager = $storeManager;
@@ -41,6 +40,7 @@ class DiscountInfo extends \Magento\Framework\View\Element\Template
 
     /**
      * @return DiscountRequest|null
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getPersonalDiscount(): ?DiscountRequest
     {

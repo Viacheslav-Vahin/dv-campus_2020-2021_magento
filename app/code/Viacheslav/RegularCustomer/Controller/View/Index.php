@@ -19,8 +19,7 @@ class Index implements \Magento\Framework\App\Action\HttpGetActionInterface
      */
     public function __construct(
         \Magento\Framework\View\Result\PageFactory $pageResponseFactory
-    )
-    {
+    ) {
         $this->pageResponseFactory = $pageResponseFactory;
     }
 

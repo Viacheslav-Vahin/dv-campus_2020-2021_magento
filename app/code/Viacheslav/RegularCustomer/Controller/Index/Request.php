@@ -55,8 +55,7 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
         \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Psr\Log\LoggerInterface $logger
-    )
-    {
+    ) {
         $this->request = $request;
         $this->jsonResponseFactory = $jsonResponseFactory;
         $this->discountRequestFactory = $discountRequestFactory;
@@ -81,9 +80,9 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
             $discountRequest = $this->discountRequestFactory->create();
             $discountRequest->setName($this->request->getParam('name'))
                 ->setEmail($this->request->getParam('email'))
-                ->setMessage($this->request->getParam('email'))
+                ->setMessage($this->request->getParam('message'))
                 ->setWebsiteId($this->storeManager->getStore()->getWebsiteId())
-                ->setStatus($this->request->getParam('email'));
+                ->setStatus(DiscountRequest::STATUS_PENDING);
             $this->discountRequestResource->save($discountRequest);
             $message = __('You request for product %1 was accepted!', $this->request->getParam('productName'));
         } catch (\Exception $e) {

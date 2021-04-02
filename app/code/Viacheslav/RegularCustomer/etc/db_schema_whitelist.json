@@ -5,8 +5,11 @@
             "customer_id": true,
             "name": true,
             "email": true,
+            "message": true,
             "website_id": true,
             "admin_user_id": true,
+            "status": true,
+            "discount_size": true,
             "created_at": true,
             "updated_at": true
         },
