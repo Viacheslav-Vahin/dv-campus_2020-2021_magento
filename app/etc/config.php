@@ -314,6 +314,7 @@ return [
         'Vertex_Tax' => 1,
         'Vertex_AddressValidationApi' => 1,
         'Vertex_AddressValidation' => 1,
+        'Viachelav_Catalog' => 1,
         'Viacheslav_Cms' => 1,
         'Viacheslav_ControllerDemo' => 1,
         'Viacheslav_RegularCustomer' => 1,
