@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Viacheslav\Widget\Setup\Patch\Data;
@@ -60,7 +61,7 @@ class CopyWidgetsToTheNewStore implements \Magento\Framework\Setup\Patch\DataPat
         foreach ($widgetCollection as $widget) {
             $widgetResource->load($widget, $widget->getId());
             $widget->unsetData('instance_id')
-                ->setThemeId(5);
+                ->setThemeId(4);
             $preparedPageGroups = [];
 
             foreach ($widget->getData('page_groups') as $pageGroup) {
