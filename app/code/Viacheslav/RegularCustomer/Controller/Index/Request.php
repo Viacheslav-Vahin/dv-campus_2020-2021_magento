@@ -35,10 +35,6 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
     private $discountRequestResource;
 
     /**
-     * @var \Psr\Log\LoggerInterface $logger
-     */
-    private $logger;
-    /**
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
     private $formKeyValidator;
@@ -48,6 +44,10 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
      */
     private $customerSession;
 
+    /**
+     * @var \Psr\Log\LoggerInterface $logger
+     */
+    private $logger;
 
     /**
      * Controller constructor.
