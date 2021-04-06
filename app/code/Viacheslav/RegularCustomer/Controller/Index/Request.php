@@ -44,6 +44,12 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
     private $formKeyValidator;
 
     /**
+     * @var \Magento\Customer\Model\Session
+     */
+    private $customerSession;
+
+
+    /**
      * Controller constructor.
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonResponseFactory
@@ -52,6 +58,7 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
+     * @param \Magento\Customer\Model\Session $customerSession
      */
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
@@ -60,7 +67,8 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
         \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
+        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
+        \Magento\Customer\Model\Session $customerSession
     ) {
         $this->request = $request;
         $this->jsonResponseFactory = $jsonResponseFactory;
@@ -69,6 +77,7 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
         $this->storeManager = $storeManager;
         $this->logger = $logger;
         $this->formKeyValidator = $formKeyValidator;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -89,6 +98,8 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
                 ->setEmail($this->request->getParam('email'))
                 ->setMessage($this->request->getParam('message'))
                 ->setWebsiteId($this->storeManager->getStore()->getWebsiteId())
+                ->setCustomerId((int) $this->customerSession->getCustomerId())
+                ->setWebsiteId((int) $this->storeManager->getStore()->getWebsiteId())
                 ->setStatus(DiscountRequest::STATUS_PENDING);
             $this->discountRequestResource->save($discountRequest);
             $message = __('You request for product %1 was accepted!', $this->request->getParam('productName'));
