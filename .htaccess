@@ -119,6 +119,15 @@
 
     Options +FollowSymLinks
     RewriteEngine on
+
+    #Production
+    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_CODE=base
+    SetEnvIf Host .*viacheslav-vahin.loc.* MAGE_RUN_TYPE=website
+
+    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_CODE=additional_website
+    SetEnvIf Host .*viacheslav-vahin-additional.loc.* MAGE_RUN_TYPE=website
+
+    #Development
     SetEnvIf Host .*viacheslav-vahin-develop.loc.* MAGE_RUN_CODE=base
     SetEnvIf Host .*viacheslav-vahin-develop.loc.* MAGE_RUN_TYPE=website
 

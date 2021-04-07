@@ -49,17 +49,11 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
     private \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator;
 
     /**
-     * @var \Magento\Catalog\Model\Session
-     */
-    private $catalogSession;
-
-    /**
      * Controller constructor.
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory
      * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Catalog\Model\Session $catalogSession
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest $discountRequestResource
      * @param \Psr\Log\LoggerInterface $logger
@@ -70,7 +64,6 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
         \Magento\Framework\App\RequestInterface $request,
         \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory,
         \Magento\Customer\Model\Session $customerSession,
-        \Magento\Catalog\Model\Session $catalogSession,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest $discountRequestResource,
         \Psr\Log\LoggerInterface $logger,
@@ -81,7 +74,6 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
         $this->request = $request;
         $this->discountRequestFactory = $discountRequestFactory;
         $this->customerSession = $customerSession;
-        $this->catalogSession = $catalogSession;
         $this->storeManager = $storeManager;
         $this->discountRequestResource = $discountRequestResource;
         $this->logger = $logger;
@@ -94,7 +86,6 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
     public function execute(): JsonResponse
     {
         $response = $this->jsonFactory->create();
-        $lastViewedProductId = $this->catalogSession->getData('last_viewed_product_id');
         try {
             if (!$this->formKeyValidator->validate($this->request)) {
                 throw new \InvalidArgumentException('Form key is not valid');
@@ -104,14 +95,13 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
             $discountRequest = $this->discountRequestFactory->create();
 
             if ($this->customerSession->isLoggedIn()) {
-                $this->customerSession->setProductId($lastViewedProductId);
                 $productId = $this->request->getParam('productId');
                 $sessionProductList = (array)$this->customerSession->getData('product_list');
                 $sessionProductList[] = $productId;
                 $this->customerSession->setProductList($sessionProductList);
-
                 $discountRequest->setName($this->customerSession->getCustomer()->getName())
                     ->setEmail($this->customerSession->getCustomerData()->getEmail())
+                    ->setMessage($this->request->getParam('message'))
                     ->setCustomerId($this->customerSession->getCustomerId())
                     ->setWebsiteId($this->storeManager->getStore()->getWebsiteId())
                     ->setStatus(DiscountRequest::STATUS_PENDING);

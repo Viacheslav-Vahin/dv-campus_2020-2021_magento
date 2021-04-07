@@ -10,6 +10,7 @@ define([
     $.widget('RegularCustomer.form', {
         options: {
             action: '',
+            productId: '',
             productName: ''
         },
 
@@ -56,6 +57,7 @@ define([
         ajaxSubmit: function () {
             let formData = new FormData($(this.element).get(0));
 
+            formData.append('productId', this.options.productId);
             formData.append('productName', this.options.productName);
             formData.append('form_key', $.mage.cookies.get('form_key'));
             formData.append('isAjax', 1);
