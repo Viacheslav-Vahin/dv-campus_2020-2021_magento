@@ -42,6 +42,18 @@
                     />
                 </div>
             </div>
+            <div class="field email required">
+                <label class="label" for="email">
+                    <span><?= $escaper->escapeHtml(__('Message')) ?></span>
+                </label>
+                <div class="control">
+                    <textarea name="message"
+                              title="<?= $escaper->escapeHtmlAttr(__('Message')) ?>"
+                              class="input-text"
+                              data-validate="{required:true}"
+                    ></textarea>
+                </div>
+            </div>
         </fieldset>
         <div class="actions-toolbar">
             <div class="primary">

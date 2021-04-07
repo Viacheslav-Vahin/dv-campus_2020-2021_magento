@@ -1,0 +1,13 @@
+<?php /** @var \Viacheslav\RegularCustomer\Block\DiscountInfo $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+<?php if ($personalDiscount = $block->getPersonalDiscount()): ?>
+    <p>
+        <span><?= $escaper->escapeHtml($personalDiscount->getMessage()) ?></span>
+    </p>
+    <p>
+        <span><?= $escaper->escapeHtml(__('Request status:')) ?></span>
+        <span><?= $escaper->escapeHtml($block->getStatusMessage($personalDiscount)) ?></span>
+    </p>
+<?php else: ?>
+    <p><?= $escaper->escapeHtml(__('No discount request')) ?></p>
+<?php endif; ?>
