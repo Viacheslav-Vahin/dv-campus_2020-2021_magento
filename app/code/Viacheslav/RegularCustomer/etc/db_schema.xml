@@ -41,6 +41,13 @@
                 nullable="true"
                 comment="Website ID"
         />
+        <column xsi:type="int"
+                name="product_id"
+                padding="10"
+                unsigned="true"
+                nullable="true"
+                comment="Product ID"
+        />
         <column xsi:type="smallint"
                 name="status"
                 padding="2"
@@ -88,6 +95,9 @@
         <index referenceId="VIACHESLAV_REGULAR_CUSTOMER_ADMIN_USER_ID" indexType="btree">
             <column name="admin_user_id"/>
         </index>
+        <index referenceId="VIACHESLAV_REGULAR_CUSTOMER_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
         <constraint xsi:type="unique" referenceId="VIACHESLAV_REGULAR_CUSTOMER_EMAIL_WEBSITE_ID">
             <column name="email"/>
             <column name="website_id"/>
@@ -97,6 +107,14 @@
                     table="viacheslav_regular_customer"
                     column="customer_id"
                     referenceTable="customer_entity"
+                    referenceColumn="entity_id"
+                    onDelete="SET NULL"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="VIACHESLAV_REGULAR_CSTR_PRD_ID_M2_CAT_PRD_ENTT_ENTT_ID"
+                    table="viacheslav_regular_customer"
+                    column="product_id"
+                    referenceTable="catalog_product_entity"
                     referenceColumn="entity_id"
                     onDelete="SET NULL"
         />

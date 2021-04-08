@@ -99,7 +99,8 @@ class Registration implements \Magento\Framework\App\Action\HttpPostActionInterf
                 $sessionProductList = (array)$this->customerSession->getData('product_list');
                 $sessionProductList[] = $productId;
                 $this->customerSession->setProductList($sessionProductList);
-                $discountRequest->setName($this->customerSession->getCustomer()->getName())
+                $discountRequest->setProductId($this->request->getParam('productId'))
+                    ->setName($this->customerSession->getCustomer()->getName())
                     ->setEmail($this->customerSession->getCustomerData()->getEmail())
                     ->setMessage($this->request->getParam('message'))
                     ->setCustomerId($this->customerSession->getCustomerId())
