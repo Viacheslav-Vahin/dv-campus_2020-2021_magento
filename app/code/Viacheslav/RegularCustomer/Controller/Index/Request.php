@@ -35,6 +35,16 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
     private $discountRequestResource;
 
     /**
+     * @var \Magento\Framework\Data\Form\FormKey\Validator
+     */
+    private $formKeyValidator;
+
+    /**
+     * @var \Magento\Customer\Model\Session
+     */
+    private $customerSession;
+
+    /**
      * @var \Psr\Log\LoggerInterface $logger
      */
     private $logger;
@@ -47,6 +57,8 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
      * @param \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Psr\Log\LoggerInterface $logger
+     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
+     * @param \Magento\Customer\Model\Session $customerSession
      */
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
@@ -54,7 +66,9 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
         \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest $discountRequestResource,
         \Viacheslav\RegularCustomer\Model\DiscountRequestFactory $discountRequestFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Psr\Log\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
+        \Magento\Customer\Model\Session $customerSession
     ) {
         $this->request = $request;
         $this->jsonResponseFactory = $jsonResponseFactory;
@@ -62,6 +76,8 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
         $this->discountRequestResource = $discountRequestResource;
         $this->storeManager = $storeManager;
         $this->logger = $logger;
+        $this->formKeyValidator = $formKeyValidator;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -71,17 +87,19 @@ class Request implements \Magento\Framework\App\Action\HttpPostActionInterface
     public function execute(): JsonResponse
     {
         $response = $this->jsonResponseFactory->create();
-        // @TODO: pass message via notifications, not alert
-        // @TODO: add form key validation and hideIt validation
-        // @TODO: add Google Recaptcha to the form
 
         try {
+            if (!$this->formKeyValidator->validate($this->request)) {
+                throw new \InvalidArgumentException('Form key is not valid');
+            }
             /** @var DiscountRequest $discountRequest */
             $discountRequest = $this->discountRequestFactory->create();
             $discountRequest->setName($this->request->getParam('name'))
                 ->setEmail($this->request->getParam('email'))
                 ->setMessage($this->request->getParam('message'))
                 ->setWebsiteId($this->storeManager->getStore()->getWebsiteId())
+                ->setCustomerId((int) $this->customerSession->getCustomerId())
+                ->setWebsiteId((int) $this->storeManager->getStore()->getWebsiteId())
                 ->setStatus(DiscountRequest::STATUS_PENDING);
             $this->discountRequestResource->save($discountRequest);
             $message = __('You request for product %1 was accepted!', $this->request->getParam('productName'));

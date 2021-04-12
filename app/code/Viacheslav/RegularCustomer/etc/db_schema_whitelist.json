@@ -20,7 +20,6 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "VIACHESLAV_REGULAR_CUSTOMER_EMAIL_WEBSITE_ID": true,
             "VIACHESLAV_REGULAR_CSTR_CSTR_ID_M2_CSTR_ENTT_ENTT_ID": true,
             "VIACHESLAV_REGULAR_CSTR_WS_ID_M2_STORE_WS_WS_ID": true,
             "VIACHESLAV_REGULAR_CSTR_ADM_USR_ID_M2_ADM_USR_USR_ID": true

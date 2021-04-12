@@ -21,33 +21,42 @@ class DiscountInfo extends \Magento\Framework\View\Element\Template
     private $storeManager;
 
     /**
+     * @var \Magento\Customer\Model\Session
+     */
+    private $customerSession;
+
+    /**
      * DiscountInfo constructor.
      * @param \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest\CollectionFactory $collectionFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param \Magento\Customer\Model\Session $customerSession
      * @param array $data
      */
     public function __construct(
         \Viacheslav\RegularCustomer\Model\ResourceModel\DiscountRequest\CollectionFactory $collectionFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Customer\Model\Session $customerSession,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->collectionFactory = $collectionFactory;
         $this->storeManager = $storeManager;
+        $this->customerSession = $customerSession;
     }
 
     /**
      * @return DiscountRequest|null
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getPersonalDiscount(): ?DiscountRequest
     {
+        $customerId = $this->customerSession->getCustomerData()->getId();
         /** @var DiscountRequestCollection $collection */
         $collection = $this->collectionFactory->create();
-        // @TODO: get current customer's ID
-        $collection->addFieldToFilter('email', 'john-doe@example.com');
+        $collection->addFieldToFilter('customer_id', $customerId);
         // @TODO: check if accounts are shared or not
         $collection->addFieldToFilter('website_id', $this->storeManager->getStore()->getWebsiteId());
         /** @var DiscountRequest $discountRequest */

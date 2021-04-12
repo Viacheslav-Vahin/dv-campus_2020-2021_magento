@@ -101,14 +101,6 @@
                     onDelete="SET NULL"
         />
         <constraint xsi:type="foreign"
-                    referenceId="VIACHESLAV_REGULAR_CSTR_WS_ID_M2_STORE_WS_WS_ID"
-                    table="viacheslav_regular_customer"
-                    column="website_id"
-                    referenceTable="store_website"
-                    referenceColumn="website_id"
-                    onDelete="SET NULL"
-        />
-        <constraint xsi:type="foreign"
                     referenceId="VIACHESLAV_REGULAR_CSTR_ADM_USR_ID_M2_ADM_USR_USR_ID"
                     table="viacheslav_regular_customer"
                     column="admin_user_id"

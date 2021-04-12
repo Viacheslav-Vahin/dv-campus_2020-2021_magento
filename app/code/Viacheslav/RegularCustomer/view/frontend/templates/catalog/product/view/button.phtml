@@ -1,5 +1,9 @@
 <?php /** @var \Magento\Catalog\Block\Product\View $block */ ?>
 <?php /** @var \Magento\Framework\Escaper $escaper */ ?>
-<button class="action primary" data-mage-init='{"ViacheslavRegularCustomerButton": {}}'>
+<button class="action primary"
+        data-mage-init='{"ViacheslavRegularCustomerButton":{
+        "url": "<?= $escaper->escapeJs($block->getUrl('viacheslav_regular_customer/loyaltyProgram/productList')) ?>",
+        "productId": "<?= $escaper->escapeJs($block->getProduct()->getId()) ?>"
+        }}'>
     <span><?= $escaper->escapeHtml(__('Participate in the program')) ?></span>
 </button>
