@@ -23,8 +23,7 @@ var lessOptions = {
         strictImports: false,
         sourceMapRootpath: '/',
         dumpLineNumbers: false, // use 'comments' instead false to output line comments for source
-        ieCompat: false,
-        outputSourceFiles: true
+        ieCompat: false
     },
     setup: {
         files: {

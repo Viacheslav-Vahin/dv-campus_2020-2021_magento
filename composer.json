@@ -13,7 +13,8 @@
     "version": "2.4.1",
     "require": {
         "magento/product-community-edition": "2.4.1",
-        "magento/composer-root-update-plugin": "~1.0"
+        "magento/composer-root-update-plugin": "~1.0",
+        "cweagans/composer-patches": "^1.7"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -74,6 +75,11 @@
         }
     ],
     "extra": {
-        "magento-force": "override"
+        "magento-force": "override",
+        "patches": {
+            "magento/magento2-base": {
+                "GITHUB-11175: i18n:collect-phrases -m can't find many important magento phrases": "var/patches/GitHub-11175_Fix-for-html-parser-in-i18n-collect-phrases.patch"
+            }
+        }
     }
 }
