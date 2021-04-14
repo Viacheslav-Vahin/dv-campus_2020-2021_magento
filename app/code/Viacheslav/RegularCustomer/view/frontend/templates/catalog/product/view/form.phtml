@@ -1,4 +1,4 @@
-<?php /** @var \Magento\Catalog\Block\Product\View $block */ ?>
+<?php /** @var \Viacheslav\RegularCustomer\Block\Product\View\PersonalDiscountForm $block */ ?>
 <?php /** @var \Magento\Framework\Escaper $escaper */ ?>
 <div style="display: none;">
     <form class="form"
@@ -7,7 +7,7 @@
           id="viacheslav-regular-customer-form"
           data-mage-init='{"ViacheslavRegularCustomerForm":{
               "action": "<?= $escaper->escapeJs($block->getUrl('viacheslav_regular_customer/loyaltyProgram/registration')) ?>",
-              "productId": "<?= $escaper->escapeJs($block->getProduct()->getId()) ?>",
+              "productId": <?= $escaper->escapeJs($block->getProduct()->getId()) ?>,
               "productName": "<?= $escaper->escapeJs($block->getProduct()->getName()) ?>"
           }}'
           onsubmit="return false;"

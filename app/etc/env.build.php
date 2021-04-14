@@ -60,10 +60,24 @@ return [
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => '69d_'
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => 'redis',
+                    'database' => '0',
+                    'port' => '6379',
+                    'compress_data' => '1',
+                    'compression_lib' => 'gzip'
+                ]
             ],
             'page_cache' => [
-                'id_prefix' => '69d_'
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => 'redis',
+                    'port' => '6379',
+                    'database' => '1',
+                    'compress_data' => '1',
+                    'compression_lib' => 'gzip'
+                ]
             ]
         ],
         'allow_parallel_generation' => false

@@ -1,10 +1,10 @@
 define([
     'jquery',
+    'Magento_Customer/js/customer-data',
     'Magento_Ui/js/modal/alert',
     'Magento_Ui/js/modal/modal',
-    'mage/translate',
-    'mage/cookies'
-], function ($, alert) {
+    'mage/translate'
+], function ($, customerData, alert) {
     'use strict';
 
     $.widget('RegularCustomer.form', {
@@ -19,11 +19,34 @@ define([
          */
         _create: function () {
             $(this.element).modal({
-                buttons: []
+                buttons: [],
+                closed: function () {
+                    $('#viacheslav-regular-customer-form')[0].reset();
+                }
             });
 
             $(document).on('viacheslav_loyalty_form_open', this.openModal.bind(this));
             $(this.element).on('submit.viacheslav_loyalty_form', this.sendRequest.bind(this));
+            this.updateCustomerData(customerData.get('loyalty-program')());
+            customerData.get('loyalty-program').subscribe(this.updateCustomerData.bind(this));
+        },
+
+        /**
+         * Autocomplete form inputs and hide button
+         */
+        updateCustomerData: function (value) {
+            if (!!value.name) {
+                $(this.element).find('input[name="name"]').val(value.name);
+            }
+
+            if (!!value.email) {
+                $(this.element).find('input[name="email"]').val(value.email);
+            }
+
+            if (!!value.productList && value.productList.includes(this.options.productId)) {
+                $(document).trigger('viacheslav_regular_customers_show_message');
+                $(document).trigger('viacheslav_regular_customers_hide_button');
+            }
         },
 
         /**
@@ -89,7 +112,6 @@ define([
                 error: function () {
                     alert({
                         title: $.mage.__('Error'),
-                        /*eslint max-len: ["error", { "ignoreStrings": true }]*/
                         content: $.mage.__('Your request can\'t be sent. Please, contact us if you see this message.')
                     });
                 },

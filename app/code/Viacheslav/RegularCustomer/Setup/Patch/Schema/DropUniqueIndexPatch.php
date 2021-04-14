@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Viacheslav\RegularCustomer\Setup\Patch\Schema;
 
-class DropUniqueIndex implements \Magento\Framework\Setup\Patch\SchemaPatchInterface
+class DropUniqueIndexPatch implements \Magento\Framework\Setup\Patch\SchemaPatchInterface
 {
     /**
      * @var \Magento\Framework\Setup\ModuleDataSetupInterface $schemaSetup

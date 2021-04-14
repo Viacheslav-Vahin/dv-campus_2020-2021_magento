@@ -16,6 +16,8 @@ namespace Viacheslav\RegularCustomer\Model;
  * @method $this setMessage(string $message)
  * @method int|string|null getWebsiteId()
  * @method $this setWebsiteId(int $websiteId)
+ * @method int|string|null getProductId()
+ * @method $this setProductId(int $productId)
  * @method int|string|null getStatus()
  * @method $this setStatus(int $status)
  * @method int|string|null getCreatedAt()
