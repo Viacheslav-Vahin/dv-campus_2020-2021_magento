@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Viacheslav\RegularCustomer\Block\Product\View;
 
-class PersonalDiscountForm extends \Magento\Catalog\Block\Product\View
+class PersonalDiscount extends \Magento\Catalog\Block\Product\View
 {
     /**
      *

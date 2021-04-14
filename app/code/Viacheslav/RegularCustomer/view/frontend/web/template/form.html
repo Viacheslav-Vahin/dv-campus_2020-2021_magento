@@ -1,0 +1,84 @@
+<form class="form"
+      action="javascript:void(0);"
+      id="viacheslav-regular-customer-form"
+      method="post"
+      onsubmit="return false;"
+      data-bind="submit: sendRequest, afterRender: initModal"
+>
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <span translate="'Registration in Loyalty Program'"></span>
+        </legend>
+        <br/>
+        <div class="field name required">
+            <label class="label" for="viacheslav-regular-customer-name">
+                <span translate="'Name'"></span>
+            </label>
+            <div class="control">
+                <input id="viacheslav-regular-customer-name"
+                       name="name"
+                       data-bind="
+                            value: customerName,
+                            attr: {
+                                title: $t('Name')
+                                }
+                            "
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"
+                />
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="viacheslav-regular-customer-email">
+                <span translate="'Email'"></span>
+            </label>
+            <div class="control">
+                <input id="viacheslav-regular-customer-email"
+                       name="email"
+                       data-bind="
+                            value: customerEmail,
+                            attr: {
+                                title: $t('Email')
+                                }
+                            "
+                       class="input-text"
+                       type="email"
+                       data-validate="{required:true, 'validate-email':true}"
+                />
+            </div>
+        </div>
+        <div class="field message required">
+            <label class="label" for="viacheslav-regular-customer-message">
+                <span translate="'Message'"></span>
+            </label>
+            <div class="control">
+                    <textarea id="viacheslav-regular-customer-message"
+                              name="message"
+                              data-bind="
+                                value: customerMessage,
+                                attr: {
+                                    title: $t('Message')
+                                }
+                              "
+                              class="input-text"
+                              data-validate="{required:true}"
+                    ></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" data-bind="value: hideIt"/>
+            <button type="submit"
+                    data-bind="
+                            attr: {
+                                title: $t('Register')
+                            }
+                      "
+                    class="action submit primary">
+                <span translate="'Request a Discount'"></span>
+            </button>
+        </div>
+    </div>
+</form>

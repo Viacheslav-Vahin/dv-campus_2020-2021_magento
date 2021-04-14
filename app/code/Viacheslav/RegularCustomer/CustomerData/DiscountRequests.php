@@ -35,18 +35,26 @@ class DiscountRequests implements \Magento\Customer\CustomerData\SectionSourceIn
      */
     public function getSectionData()
     {
+        $customerName = $this->customerSession->getGuestName();
+        $customerEmail = $this->customerSession->getGuestEmail();
+
         if ($this->customerSession->isLoggedIn()) {
-            $customerName = $this->customerSession->getCustomer()->getName();
-            $customerEmail = $this->customerSession->getCustomer()->getEmail();
+            if (!$customerName) {
+                $customerName = $this->customerSession->getCustomer()->getName();
+            }
+
+            if (!$customerEmail) {
+                $customerEmail = $this->customerSession->getCustomer()->getEmail();
+            }
             $customerId = $this->customerSession->getCustomerId();
 
             /** @var DiscountRequestCollection $collection */
             $collection = $this->collectionFactory->create();
             $collection->addFieldToFilter('customer_id', $customerId);
-            $productList = array_map('intval', $collection->getColumnValues('product_id'));
+            $productList = $collection->getColumnValues('product_id');
+            $productList = array_unique($productList);
+            $productList = array_values(array_map('intval', $productList));
         } else {
-            $customerName = $this->customerSession->getGuestName();
-            $customerEmail = $this->customerSession->getGuestEmail();
             $productList = $this->customerSession->getProductList();
         }
 

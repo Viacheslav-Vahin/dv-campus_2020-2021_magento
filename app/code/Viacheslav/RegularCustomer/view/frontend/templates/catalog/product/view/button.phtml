@@ -1,5 +1,21 @@
+<?php /** @var \Viacheslav\RegularCustomer\Block\Product\View\PersonalDiscount $block */ ?>
 <?php /** @var \Magento\Framework\Escaper $escaper */ ?>
-<button class="action primary"
-        data-mage-init='{"ViacheslavRegularCustomerButton":{}}'>
-    <span><?= $escaper->escapeHtml(__('Participate in the program')) ?></span>
-</button>
+
+<div data-bind="scope: 'loyaltyProgramButton'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "loyaltyProgramButton": {
+                        "component": "ViacheslavRegularCustomerButton",
+                        "productId": <?= (int) $block->getProduct()->getId() ?>
+                    }
+                }
+            }
+        }
+    }
+</script>

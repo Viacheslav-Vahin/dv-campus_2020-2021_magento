@@ -1,0 +1,10 @@
+<p class="viacheslav-regular-customers-cms"
+   translate="'Please register to participate in the loyalty program'"
+   data-bind="visible: !requestAlreadySent()"></p>
+<button class="action primary" data-bind="click: openRegistrationForm, visible: !requestAlreadySent()">
+    <span translate="'Participate in the program'"></span>
+</button>
+<span class="message-success success message"
+      translate="'Already requested!'"
+      data-bind="visible: requestAlreadySent()"
+></span>
