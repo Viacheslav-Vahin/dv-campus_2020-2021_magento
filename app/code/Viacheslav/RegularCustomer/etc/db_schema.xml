@@ -98,10 +98,6 @@
         <index referenceId="VIACHESLAV_REGULAR_CUSTOMER_PRODUCT_ID" indexType="btree">
             <column name="product_id"/>
         </index>
-        <constraint xsi:type="unique" referenceId="VIACHESLAV_REGULAR_CUSTOMER_EMAIL_WEBSITE_ID">
-            <column name="email"/>
-            <column name="website_id"/>
-        </constraint>
         <constraint xsi:type="foreign"
                     referenceId="VIACHESLAV_REGULAR_CSTR_CSTR_ID_M2_CSTR_ENTT_ENTT_ID"
                     table="viacheslav_regular_customer"
@@ -116,6 +112,14 @@
                     column="product_id"
                     referenceTable="catalog_product_entity"
                     referenceColumn="entity_id"
+                    onDelete="SET NULL"
+        />
+        <constraint xsi:type="foreign"
+                    referenceId="VIACHESLAV_REGULAR_CSTR_WS_ID_M2_STORE_WS_WS_ID"
+                    table="viacheslav_regular_customer"
+                    column="website_id"
+                    referenceTable="store_website"
+                    referenceColumn="website_id"
                     onDelete="SET NULL"
         />
         <constraint xsi:type="foreign"
